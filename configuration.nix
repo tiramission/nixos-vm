@@ -18,6 +18,7 @@ in {
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.substituters = ["https://mirror.sjtu.edu.cn/nix-channels/store"];
   environment.systemPackages = with pkgs; [
     git
     neovim

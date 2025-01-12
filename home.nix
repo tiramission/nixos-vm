@@ -5,6 +5,8 @@
   home.stateVersion = "24.11";
   home.packages = with pkgs; [
     grc
+
+    bat
   ];
   programs.fish = {
     enable = true;
