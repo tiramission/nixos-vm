@@ -13,6 +13,8 @@ in {
   imports = [
     ./setup-hardware.nix
     ./setup-disk.nix
+    ./setup-fonts.nix
+    ./setup-desktop.nix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
