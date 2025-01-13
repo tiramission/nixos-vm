@@ -18,9 +18,6 @@
   outputs = {
     self,
     nixpkgs,
-    disko,
-    home-manager,
-    nix-index-database,
     ...
   } @ inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
