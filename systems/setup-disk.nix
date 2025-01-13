@@ -1,10 +1,10 @@
 # USAGE in your configuration.nix.
 # Update devices to match your hardware.
-# {
-#  imports = [ ./disko-config.nix ];
-#  disko.devices.disk.main.device = "/dev/sda";
-# }
-{
+{inputs, ...}: {
+  imports = [
+    inputs.disko.nixosModules.disko
+  ];
+
   disko.devices = {
     disk = {
       main = {

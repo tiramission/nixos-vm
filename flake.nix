@@ -10,6 +10,9 @@
 
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -17,25 +20,16 @@
     nixpkgs,
     disko,
     home-manager,
+    nix-index-database,
     ...
   } @ inputs: {
-    # TODO 请将下面的 my-nixos 替换成你的 hostname
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = {inherit inputs;};
       modules = [
-        # 这里导入之前我们使用的 configuration.nix，
-        # 这样旧的配置文件仍然能生效
-        ./configuration.nix
-        disko.nixosModules.disko
-
+        ./systems/setup-config.nix
+        ./systems/setup-home.nix
         ./tools/fish-in-bash.nix
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.jaign = import ./home.nix;
-        }
       ];
     };
   };
