@@ -19,6 +19,7 @@
       jetbrains-mono
       # cascadia-code
       # nerd-fonts.symbols-only
+      # nerdfonts
     ];
 
     fontconfig = {
