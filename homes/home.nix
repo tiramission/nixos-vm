@@ -14,5 +14,8 @@
     grc
 
     bat
+    zed-editor
+    warp-terminal
+    ghostty
   ];
 }
