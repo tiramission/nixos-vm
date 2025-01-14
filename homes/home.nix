@@ -5,17 +5,10 @@
 }: {
   imports = [
     ./setups/nix-index.nix
+    ./setups/pkgs.nix
     ./setups/git.nix
     ./setups/shell.nix
   ];
 
   home.stateVersion = "24.11";
-  home.packages = with pkgs; [
-    grc
-
-    bat
-    zed-editor
-    warp-terminal
-    ghostty
-  ];
 }
