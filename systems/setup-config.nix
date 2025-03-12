@@ -9,6 +9,7 @@
   ...
 }: let
   ed25519-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDhmSdP4sVoCQy7I72E4LBg77WA0dZYeUQHNOlNnD0M6";
+  binary-mirror = "https://mirrors.ustc.edu.cn/nix-channels/store";
 in {
   imports = [
     ./setup-hardware.nix
@@ -18,7 +19,7 @@ in {
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.substituters = ["https://mirror.sjtu.edu.cn/nix-channels/store"];
+  nix.settings.substituters = [binary-mirror];
   environment.systemPackages = with pkgs; [
     git
     neovim
