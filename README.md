@@ -7,10 +7,9 @@ cd nixos-config
 ```
 2. 分区磁盘
 ```bash
-nix-shell -p disko
-disko -m disko -f .#hyperv
+sudo nix --extra-experimental-features 'nix-command flakes' run nixpkgs#disko -- -m disko -f .#hyperv
 ```
 3. 安装系统
 ```bash
-nixos-install --flake .#nixos
+sudo nixos-install --option substituters https://mirrors.ustc.edu.cn/nix-channels/store --flake .#nixos
 ```
