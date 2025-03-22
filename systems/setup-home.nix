@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{inputs, params, ...}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -8,7 +8,7 @@
     useUserPackages = true;
     backupFileExtension = "hm.bak";
     extraSpecialArgs = {
-      inherit inputs;
+      inherit inputs params;
     };
 
     users.jaign = {...}: {

@@ -1,14 +1,15 @@
-{pkgs, ...}: {
+{pkgs, params, ...}: {
   home.packages = with pkgs; [
     grc # fish
 
     # command
     bat
-    tree
+    tree;
 
     # gui
-    zed-editor
-    warp-terminal
-    ghostty
-  ];
+    ] ++ (if params.gui then [
+      zed-editor
+      warp-terminal
+      ghostty
+    ] else []);
 }

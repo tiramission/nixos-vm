@@ -19,11 +19,17 @@
     self,
     nixpkgs,
     ...
-  } @ inputs: {
-    diskoConfigurations.hyperv = import ./systems/disk.nix;
+  } @ inputs: let
+    params = {
+      desktop = false;
+      machine = "fnvm";
+      # machine = "hy";
+    };
+  in {
+    diskoConfigurations.disk = import ./systems/disk.nix;
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {inherit inputs;};
+      specialArgs = {inherit inputs params;};
       modules = [
         ./systems/setup-config.nix
         ./systems/setup-home.nix
