@@ -21,7 +21,7 @@
     ...
   } @ inputs: let
     params = {
-      desktop = false;
+      gui = false;
       machine = "fnvm";
       # machine = "hy";
     };

@@ -1,7 +1,5 @@
-{
-params, ...
-}: {
+{params, ...}: {
   imports = [
-    "./hardwares/${params.machine}.nix"
+    ./hardwares/${params.machine}.nix
   ];
 }

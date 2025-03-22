@@ -11,14 +11,21 @@
 }: let
   ed25519-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDhmSdP4sVoCQy7I72E4LBg77WA0dZYeUQHNOlNnD0M6";
   binary-mirror = "https://mirrors.ustc.edu.cn/nix-channels/store";
-in {
-  imports = [
-    ./setup-hardware.nix
-    ./setup-disk.nix
-  ] ++ if params.gui then [
+  gui-imports = [
     ./setup-fonts.nix
     ./setup-desktop.nix
-  ] else [];
+  ];
+in {
+  imports =
+    [
+      ./setup-hardware.nix
+      ./setup-disk.nix
+    ]
+    ++ (
+      if params.gui
+      then gui-imports
+      else []
+    );
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.substituters = [binary-mirror];
