@@ -20,14 +20,7 @@
     nixpkgs,
     ...
   } @ inputs: let
-    params = {
-      gui = false;
-      machine = "fnvm";
-      # machine = "hy";
-    };
-  in {
-    diskoConfigurations.disk = import ./systems/disk.nix;
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    mkNixos = params : nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit inputs params;};
       modules = [
@@ -36,5 +29,9 @@
         ./tools/fish-in-bash.nix
       ];
     };
+  in {
+    diskoConfigurations.disk = import ./systems/disk.nix;
+    nixosConfigurations.fnvm = mkDefault { gui = false; machine = "fnvm"; };
+    nixosConfigurations.hyperv = mkDefault { gui = true; machine = "hyperv"; };
   };
 }
