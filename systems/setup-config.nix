@@ -28,6 +28,7 @@ in {
     );
 
   networking.hostName = params.hostname;
+  networking.proxy.default = params.proxy;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.substituters = [binary-mirror];
