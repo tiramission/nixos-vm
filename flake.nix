@@ -33,13 +33,15 @@
   in {
     diskoConfigurations.disk = import ./systems/disk.nix;
     nixosConfigurations = {
-      fnvm = mkNixos {
+      fnosvm-nixos = mkNixos {
         gui = false;
-        machine = "fnvm";
+        machine = "fnosvm";
+        hostname = "fnosvm-nixos";
       };
-      hyperv = mkNixos {
+      hyperv-nixos = mkNixos {
         gui = true;
         machine = "hyperv";
+        hostname = "hyperv-nixos";
       };
     };
   };

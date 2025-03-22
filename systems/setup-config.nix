@@ -27,6 +27,8 @@ in {
       else []
     );
 
+  networking.hostName = params.hostname;
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.substituters = [binary-mirror];
   environment.systemPackages = with pkgs; [
