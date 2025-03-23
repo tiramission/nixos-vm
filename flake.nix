@@ -16,6 +16,9 @@
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     vscode-server.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -34,7 +37,7 @@
         ];
       };
   in {
-    diskoConfigurations.disk = import ./systems/disk.nix;
+    diskoConfigurations.disk-ext4 = import ./systems/disks/ext4.nix;
     nixosConfigurations = {
       fnosvm-nixos = mkNixos {
         gui = false;
@@ -46,6 +49,12 @@
         gui = true;
         machine = "hyperv";
         hostname = "hyperv-nixos";
+        proxy = null;
+      };
+      wsl-nixos = mkNixos {
+        gui = false;
+        machine = "wsl";
+        hostname = "wsl-nixos";
         proxy = null;
       };
     };

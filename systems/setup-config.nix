@@ -19,7 +19,6 @@ in {
   imports =
     [
       ./setup-hardware.nix
-      ./setup-disk.nix
     ]
     ++ (
       if params.gui
