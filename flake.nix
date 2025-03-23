@@ -70,7 +70,6 @@
       wsl-nixos = mkNixos {
         machine = "wsl";
         hostname = "wsl-nixos";
-        username = "nixos";
       };
     };
   };
