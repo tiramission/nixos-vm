@@ -1,3 +1,4 @@
+# This is a fix for vscode-server to work with notWSL
 {
   inputs,
   lib,
