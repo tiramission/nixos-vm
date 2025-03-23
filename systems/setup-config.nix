@@ -13,9 +13,8 @@
 in {
   imports = [
     ./setup-hardware.nix
+    ./setup-gui.nix
     ./configs/setup-nowsl.nix
-    ./setup-fonts.nix
-    ./setup-desktop.nix
   ];
 
   networking.hostName = params.hostname;
