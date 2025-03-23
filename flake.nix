@@ -19,6 +19,9 @@
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+
+    nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -31,6 +34,7 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs params;};
         modules = [
+          inputs.nur.modules.nixos.default
           ./systems/setup-config.nix
           ./systems/setup-home.nix
 

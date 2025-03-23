@@ -14,5 +14,7 @@
     # command
     bat
     tree
+
+    nur.repos.mic92.hello-nur
   ];
 }
