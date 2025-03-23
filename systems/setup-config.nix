@@ -10,22 +10,13 @@
   ...
 }: let
   binary-mirror = "https://mirrors.ustc.edu.cn/nix-channels/store";
-  gui-imports = [
+in {
+  imports = [
+    ./setup-hardware.nix
+    ./configs/setup-nowsl.nix
     ./setup-fonts.nix
     ./setup-desktop.nix
   ];
-in {
-  imports =
-    [
-      ./setup-hardware.nix
-      ./configs/setup-wsl.nix
-      ./configs/setup-nowsl.nix
-    ]
-    ++ (
-      if params.gui
-      then gui-imports
-      else []
-    );
 
   networking.hostName = params.hostname;
   networking.proxy.default = params.proxy;
@@ -40,6 +31,8 @@ in {
   ];
   environment.variables.EDITOR = "nvim";
   security.sudo.wheelNeedsPassword = false;
+
+  i18n.defaultLocale = "zh_CN.UTF-8";
 
   system.stateVersion = "24.11"; # Did you read the comment?
   nixpkgs.config.allowUnfree = true;
