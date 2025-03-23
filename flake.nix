@@ -29,7 +29,19 @@
     nixpkgs,
     ...
   } @ inputs: let
-    mkNixos = params:
+    mkNixos = params' @ {
+      gui ? false,
+      username ? "jaign",
+      proxy ? null,
+      ...
+    }: let
+      params =
+        {
+          inherit gui username proxy;
+        }
+        // params';
+      #  默认值不会 params' 传递，所以需要手动传递
+    in
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs params;};
@@ -46,7 +58,6 @@
     diskoConfigurations.disk-ext4 = import ./systems/disks/ext4.nix;
     nixosConfigurations = {
       fnosvm-nixos = mkNixos {
-        gui = false;
         machine = "fnosvm";
         hostname = "fnosvm-nixos";
         proxy = "http://192.168.30.29:7890";
@@ -55,13 +66,11 @@
         gui = true;
         machine = "hyperv";
         hostname = "hyperv-nixos";
-        proxy = null;
       };
       wsl-nixos = mkNixos {
-        gui = false;
         machine = "wsl";
         hostname = "wsl-nixos";
-        proxy = null;
+        username = "nixos";
       };
     };
   };

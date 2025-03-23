@@ -15,7 +15,7 @@
       inherit inputs params;
     };
 
-    users.jaign = {...}: {
+    users.${params.username} = {...}: {
       imports = [
         ../homes/home.nix
       ];

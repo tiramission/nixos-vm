@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  params,
+  ...
+}: {
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
@@ -23,5 +27,5 @@
   ];
 
   users.users.gdm = {extraGroups = ["video"];};
-  users.users.jaign = {extraGroups = ["video"];};
+  users.users.${params.username} = {extraGroups = ["video"];};
 }

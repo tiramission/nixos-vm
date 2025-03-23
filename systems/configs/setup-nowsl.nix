@@ -13,9 +13,9 @@ in {
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.systemd-boot.configurationLimit = 5;
 
-    users.users.jaign = {
+    users.users.${params.username} = {
       isNormalUser = true;
-      description = "jaign";
+      description = "${params.username}";
       extraGroups = ["networkmanager" "wheel"];
       openssh.authorizedKeys.keys = [ed25519-key];
       packages = with pkgs; [
