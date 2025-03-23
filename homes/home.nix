@@ -9,6 +9,8 @@
     ./setups/apps.nix
     ./setups/git.nix
     ./setups/shell.nix
+
+    ./tools/fix-vscode.nix
   ];
 
   home.stateVersion = "24.11";

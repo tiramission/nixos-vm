@@ -31,7 +31,6 @@
           ./systems/setup-config.nix
           ./systems/setup-home.nix
           ./tools/fish-in-bash.nix
-          ./tools/fix-vscode.nix
         ];
       };
   in {
