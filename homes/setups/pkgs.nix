@@ -14,6 +14,7 @@
     # command
     bat
     tree
+    ripgrep
 
     nur.repos.mic92.hello-nur
   ];
