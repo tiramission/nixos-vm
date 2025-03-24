@@ -2,8 +2,7 @@
   imports = [
     ./apps/vscode.nix
     ./apps/git.nix
-  ];
-
-  home.packages = with pkgs; [
+    ./apps/nix-index.nix
+    ./apps/fish.nix
   ];
 }

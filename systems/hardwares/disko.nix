@@ -5,7 +5,7 @@
   ...
 }: let
 in {
-  imports = lib.optionals (params.machine != "wsl") [
+  imports = [
     inputs.disko.nixosModules.disko
     ../disks/ext4.nix
   ];

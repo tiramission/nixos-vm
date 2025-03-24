@@ -4,9 +4,7 @@
   lib,
   params,
   ...
-}:
-lib.optionalAttrs (params.machine != "wsl")
-{
+}: {
   imports = [
     inputs.vscode-server.homeModules.default
   ];

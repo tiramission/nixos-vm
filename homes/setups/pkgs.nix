@@ -4,18 +4,8 @@
   lib,
   ...
 }: {
-  imports = lib.optionals params.gui [
-    ./pkgs/gui.nix
-  ];
-
-  home.packages = with pkgs; [
-    grc # fish
-
-    # command
-    bat
-    tree
-    ripgrep
-
-    nur.repos.mic92.hello-nur
+  imports = lib.concatLists [
+    (lib.optionals true [./pkgs/cmd.nix])
+    (lib.optionals (params.gui) [./pkgs/gui.nix])
   ];
 }
