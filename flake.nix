@@ -41,10 +41,14 @@
         }
         // params';
       #  默认值不会 params' 传递，所以需要手动传递
+      mlib = {
+        # 与 lib.optionals 相反的函数：先接受模块列表，再接受条件
+        includeif = modules: condition: nixpkgs.lib.optionals condition modules;
+      };
     in
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs params;};
+        specialArgs = {inherit inputs params mlib;};
         modules = [
           inputs.nur.modules.nixos.default
           ./systems/setup-config.nix

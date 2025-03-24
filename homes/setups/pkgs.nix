@@ -2,10 +2,11 @@
   pkgs,
   params,
   lib,
+  mlib,
   ...
 }: {
   imports = lib.concatLists [
-    (lib.optionals true [./pkgs/cmd.nix])
-    (lib.optionals (params.gui) [./pkgs/gui.nix])
+    (mlib.includeif [./pkgs/cmd.nix] true)
+    (mlib.includeif [./pkgs/gui.nix] params.gui)
   ];
 }

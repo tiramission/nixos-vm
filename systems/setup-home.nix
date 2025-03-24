@@ -1,6 +1,7 @@
 {
   inputs,
   params,
+  mlib,
   ...
 }: {
   imports = [
@@ -12,7 +13,7 @@
     useUserPackages = true;
     backupFileExtension = "hm.bak";
     extraSpecialArgs = {
-      inherit inputs params;
+      inherit inputs params mlib;
     };
 
     users.${params.username} = {...}: {

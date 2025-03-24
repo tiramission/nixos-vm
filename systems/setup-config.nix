@@ -4,13 +4,13 @@
 {
   lib,
   params,
+  mlib,
   ...
-}: let
-in {
+}: {
   imports = lib.concatLists [
-    (lib.optionals true [./configs/setup-common.nix])
-    (lib.optionals (params.gui) [./configs/setup-gui.nix])
-    (lib.optionals (params.machine != "wsl") [./configs/setup-nowsl.nix])
-    (lib.optionals true [./configs/setup-hardware.nix])
+    (mlib.includeif [./configs/setup-common.nix] true)
+    (mlib.includeif [./configs/setup-gui.nix] params.gui)
+    (mlib.includeif [./configs/setup-nowsl.nix] (params.machine != "wsl"))
+    (mlib.includeif [./configs/setup-hardware.nix] true)
   ];
 }

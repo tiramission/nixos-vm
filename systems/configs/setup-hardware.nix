@@ -1,11 +1,11 @@
 {
   lib,
   params,
+  mlib,
   ...
-}: let
-in {
+}: {
   imports = lib.concatLists [
-    (lib.optionals true [../hardwares/${params.machine}.nix])
-    (lib.optionals (params.machine != "wsl") [../hardwares/disko.nix])
+    (mlib.includeif [../hardwares/${params.machine}.nix] true)
+    (mlib.includeif [../hardwares/disko.nix] (params.machine != "wsl"))
   ];
 }
