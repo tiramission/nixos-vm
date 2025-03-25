@@ -3,8 +3,7 @@
   lib,
   params,
   ...
-}:
-lib.optionalAttrs params.gui {
+}: {
   home.file.".vscode/argv.json".source = (pkgs.formats.json {}).generate "argv" {
     "locale" = "zh-cn";
     "enable-crash-reporter" = true;
