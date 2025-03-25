@@ -3,7 +3,7 @@
     grc # fish
 
     # command
-    bat
+    # bat
     tree
     ripgrep
 
