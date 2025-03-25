@@ -4,7 +4,9 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  ed25519-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDhmSdP4sVoCQy7I72E4LBg77WA0dZYeUQHNOlNnD0M6";
+in {
   # ...
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -14,12 +16,12 @@
     isNormalUser = true;
     description = "${params.username}";
     extraGroups = ["networkmanager" "wheel"];
-    openssh.authorizedKeys.keys = [params.pkey];
+    openssh.authorizedKeys.keys = [ed25519-key];
     packages = with pkgs; [
       #  firefox
       #  thunderbird
     ];
-    passwordFile = config.age.secrets.user-password.path;
+    hashedPassword = "$y$j9T$YL92Oi1f0ZSAE9Zcyj5M5/$Ktasy.qAJvFc8DZHKBLz9dq1kk0vA87opaJ8ckaObm.";
   };
 
   services.openssh.enable = true;
@@ -28,6 +30,6 @@
     PasswordAuthentication = false;
   };
   users.users."root".openssh.authorizedKeys.keys = [
-    params.pkey
+    ed25519-key
   ];
 }
