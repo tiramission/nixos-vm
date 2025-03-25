@@ -30,38 +30,34 @@
     nixpkgs,
     ...
   } @ inputs: let
-    mkNixos = params' @ {
-      gui ? false,
-      username ? "jaign",
-      # hashedPassword
-      hashpass ? "$y$j9T$YL92Oi1f0ZSAE9Zcyj5M5/$Ktasy.qAJvFc8DZHKBLz9dq1kk0vA87opaJ8ckaObm.",
-      proxy ? null,
-      ...
-    }: let
-      params =
-        {
-          inherit gui username hashpass proxy;
-        }
-        // params';
-      #  默认值不会 params' 传递，所以需要手动传递
-      mlib = {
-        # 与 lib.optionals 相反的函数：先接受模块列表，再接受条件
-        includeif = modules: condition: nixpkgs.lib.optionals condition modules;
-      };
-    in
-      nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs params mlib;};
-        modules = [
-          inputs.nur.modules.nixos.default
-          ./systems/setup-config.nix
-          ./systems/setup-home.nix
-          ./systems/setup-tools.nix
-        ];
-      };
+    mlib = {
+      # 与 lib.optionals 相反的函数：先接受模块列表，再接受条件
+      includeif = modules: condition: nixpkgs.lib.optionals condition modules;
+    };
   in {
     diskoConfigurations.disk-ext4 = import ./systems/disks/ext4.nix;
-    nixosConfigurations = {
+    nixosConfigurations = let
+      mkNixos = params' @ {
+        gui ? false,
+        username ? "jaign",
+        # hashedPassword
+        hashpass ? "$y$j9T$YL92Oi1f0ZSAE9Zcyj5M5/$Ktasy.qAJvFc8DZHKBLz9dq1kk0vA87opaJ8ckaObm.",
+        proxy ? null,
+        ...
+      }: let
+        params = {inherit gui username hashpass proxy;} // params';
+      in
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {inherit inputs params mlib;};
+          modules = [
+            inputs.nur.modules.nixos.default
+            ./systems/setup-config.nix
+            ./systems/setup-home.nix
+            ./systems/setup-tools.nix
+          ];
+        };
+    in {
       fnosvm-nixos = mkNixos {
         machine = "fnosvm";
         hostname = "fnosvm-nixos";
@@ -77,5 +73,13 @@
         hostname = "wsl-nixos";
       };
     };
+    packages = let
+      systems = ["x86_64-linux" "aarch64-linux"];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+    in
+      forAllSystems (system:
+        import ./pkgs {
+          pkgs = import nixpkgs {inherit system;};
+        });
   };
 }

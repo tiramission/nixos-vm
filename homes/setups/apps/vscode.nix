@@ -20,7 +20,7 @@
       "workbench.iconTheme" = "catppuccin-mocha";
       "workbench.preferredDarkColorTheme" = "Catppuccin Mocha";
       "workbench.preferredLightColorTheme" = "Catppuccin Latte";
-      "editor.fontFamily" = "'Source Code Pro', 'Noto Serif CJK SC'";
+      "editor.fontFamily" = "'Sarasa Term SC Nerd', 'Source Code Pro', 'Noto Serif CJK SC'";
       "editor.fontSize" = 12;
     };
     extensions = with pkgs.vscode-extensions; [

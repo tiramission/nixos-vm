@@ -4,5 +4,8 @@
       gh = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.gh;
       unstable = inputs.nixpkgs-unstable.legacyPackages.${prev.system};
     })
+    (final: prev: rec {
+      custom = import ../../pkgs {pkgs = prev;};
+    })
   ];
 }
