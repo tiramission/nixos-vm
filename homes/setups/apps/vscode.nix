@@ -12,6 +12,8 @@
 
   programs.vscode = {
     enable = true;
+    package = pkgs.unstable.vscode;
+    mutableExtensionsDir = false;
     userSettings = {
       "window.dialogStyle" = "custom";
       "window.titleBarStyle" = "custom";
@@ -21,12 +23,13 @@
       "workbench.preferredDarkColorTheme" = "Catppuccin Mocha";
       "workbench.preferredLightColorTheme" = "Catppuccin Latte";
       "editor.fontFamily" = "'Sarasa Term SC Nerd', 'Source Code Pro', 'Noto Serif CJK SC'";
-      "editor.fontSize" = 12;
+      "editor.fontSize" = 15;
     };
     extensions = with pkgs.vscode-extensions; [
       ms-ceintl.vscode-language-pack-zh-hans
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons
+      bbenoist.nix
     ];
   };
 }

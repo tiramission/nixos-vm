@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   programs.git = {
     enable = true;
     userName = "tiramission";
@@ -11,5 +11,6 @@
 
   programs.gh = {
     enable = true;
+    package = pkgs.unstable.gh;
   };
 }
