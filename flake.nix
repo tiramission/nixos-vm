@@ -22,6 +22,10 @@
 
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
+
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.inputs.darwin.follows = "";
   };
 
   outputs = {
@@ -33,11 +37,12 @@
       gui ? false,
       username ? "jaign",
       proxy ? null,
+      pkey ? "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDhmSdP4sVoCQy7I72E4LBg77WA0dZYeUQHNOlNnD0M6",
       ...
     }: let
       params =
         {
-          inherit gui username proxy;
+          inherit gui username proxy pkey;
         }
         // params';
       #  默认值不会 params' 传递，所以需要手动传递
@@ -51,6 +56,8 @@
         specialArgs = {inherit inputs params mlib;};
         modules = [
           inputs.nur.modules.nixos.default
+          inputs.agenix.nixosModules.default
+          ./systems/setup-agenix.nix
           ./systems/setup-config.nix
           ./systems/setup-home.nix
           ./systems/setup-tools.nix
