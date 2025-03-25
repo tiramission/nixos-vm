@@ -6,6 +6,6 @@
 }: {
   imports = [
     inputs.disko.nixosModules.disko
-    ../disks/ext4.nix
+    ./ext4.nix
   ];
 }

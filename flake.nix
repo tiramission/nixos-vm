@@ -53,9 +53,7 @@
           inputs.nur.modules.nixos.default
           ./systems/setup-config.nix
           ./systems/setup-home.nix
-
-          ./tools/fish-in-bash.nix
-          ./tools/nix-ld.nix # fix vscode
+          ./systems/setup-tools.nix
         ];
       };
   in {

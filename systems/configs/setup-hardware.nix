@@ -6,6 +6,6 @@
 }: {
   imports = lib.concatLists [
     (mlib.includeif [../hardwares/${params.machine}.nix] true)
-    (mlib.includeif [../hardwares/disko.nix] (params.machine != "wsl"))
+    (mlib.includeif [../disks/disko.nix] (params.machine != "wsl"))
   ];
 }
