@@ -32,12 +32,14 @@
     mkNixos = params' @ {
       gui ? false,
       username ? "jaign",
+      # hashedPassword
+      hashpass ? "$y$j9T$YL92Oi1f0ZSAE9Zcyj5M5/$Ktasy.qAJvFc8DZHKBLz9dq1kk0vA87opaJ8ckaObm.",
       proxy ? null,
       ...
     }: let
       params =
         {
-          inherit gui username proxy;
+          inherit gui username hashpass proxy;
         }
         // params';
       #  默认值不会 params' 传递，所以需要手动传递

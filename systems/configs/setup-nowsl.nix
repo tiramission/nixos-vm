@@ -21,7 +21,7 @@ in {
       #  firefox
       #  thunderbird
     ];
-    hashedPassword = "$y$j9T$YL92Oi1f0ZSAE9Zcyj5M5/$Ktasy.qAJvFc8DZHKBLz9dq1kk0vA87opaJ8ckaObm.";
+    hashedPassword = params.hashpass;
   };
 
   services.openssh.enable = true;
