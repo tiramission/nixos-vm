@@ -13,3 +13,8 @@ sudo nix --extra-experimental-features 'nix-command flakes' run nixpkgs#disko --
 ```bash
 sudo nixos-install --option substituters https://mirrors.ustc.edu.cn/nix-channels/store --flake .#<hostname>
 ```
+
+## 构建WSL
+```bash
+sudo nix run .#nixosConfigurations.wsl-nixos.config.system.build.tarballBuilder
+```
