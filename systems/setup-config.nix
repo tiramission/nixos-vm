@@ -10,7 +10,7 @@
   imports = lib.concatLists [
     (mlib.includeif [./configs/setup-common.nix] true)
     (mlib.includeif [./configs/setup-gui.nix] params.gui)
-    (mlib.includeif [./configs/setup-nowsl.nix] (params.machine != "wsl"))
+    (mlib.includeif [./configs/setup-nowsl.nix] (!params.wsl))
     (mlib.includeif [./configs/setup-hardware.nix] true)
     (mlib.includeif [./configs/setup-overlays.nix] true)
   ];
