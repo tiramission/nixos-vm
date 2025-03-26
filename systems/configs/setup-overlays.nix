@@ -13,7 +13,7 @@
       };
     })
     (final: prev: rec {
-      custom = inputs.self.packages;
+      custom = inputs.self.packages.${prev.system};
     })
   ];
 }
