@@ -37,15 +37,14 @@
   in {
     diskoConfigurations.disk-ext4 = import ./systems/disks/ext4.nix;
     nixosConfigurations = let
-      mkNixos = params' @ {
-        gui ? false,
-        username ? "jaign",
-        # hashedPassword
-        hashpass ? "$y$j9T$YL92Oi1f0ZSAE9Zcyj5M5/$Ktasy.qAJvFc8DZHKBLz9dq1kk0vA87opaJ8ckaObm.",
-        proxy ? null,
-        ...
-      }: let
-        params = {inherit gui username hashpass proxy;} // params';
+      defaultParams = {
+        gui = false;
+        username = "jaign";
+        hashpass = "$y$j9T$YL92Oi1f0ZSAE9Zcyj5M5/$Ktasy.qAJvFc8DZHKBLz9dq1kk0vA87opaJ8ckaObm.";
+        proxy = null;
+      };
+      mkNixos = params': let
+        params = defaultParams // params';
       in
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -76,10 +75,14 @@
     packages = let
       systems = ["x86_64-linux" "aarch64-linux"];
       forAllSystems = nixpkgs.lib.genAttrs systems;
-    in
-      forAllSystems (system:
-        import ./pkgs {
-          pkgs = import nixpkgs {inherit system;};
+      nixpkgsFor = forAllSystems (system:
+        import nixpkgs {
+          inherit system;
+          config = {
+            allowUnfree = true;
+          };
         });
+    in
+      forAllSystems (system: import ./pkgs {pkgs = nixpkgsFor.${system};});
   };
 }

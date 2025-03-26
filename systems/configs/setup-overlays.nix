@@ -13,7 +13,7 @@
       };
     })
     (final: prev: rec {
-      custom = import ../../pkgs {pkgs = prev;};
+      custom = inputs.self.packages;
     })
   ];
 }
