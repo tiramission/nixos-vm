@@ -1,6 +1,6 @@
 {inputs, ...}: {
   nixpkgs.overlays = [
-    (final: prev: rec {
+    (final: prev: {
       # 配置 unstable 允许 unfree 软件
       unstable = import inputs.nixpkgs-unstable {
         system = prev.system;
@@ -12,7 +12,7 @@
         };
       };
     })
-    (final: prev: rec {
+    (final: prev: {
       custom = inputs.self.packages.${prev.system};
     })
   ];
