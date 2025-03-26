@@ -30,7 +30,12 @@
     nixpkgs,
     ...
   } @ inputs: let
-    mkNixos = import ./lib/mk-nixos.nix inputs;
+    mkNixos = import ./lib/mk-nixos.nix inputs {
+      gui = false;
+      username = "jaign";
+      hashpass = "$y$j9T$YL92Oi1f0ZSAE9Zcyj5M5/$Ktasy.qAJvFc8DZHKBLz9dq1kk0vA87opaJ8ckaObm.";
+      proxy = null;
+    }; # 参数
   in {
     diskoConfigurations.disk-ext4 = import ./systems/disks/ext4.nix;
     nixosConfigurations = {
