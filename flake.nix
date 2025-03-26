@@ -30,33 +30,10 @@
     nixpkgs,
     ...
   } @ inputs: let
-    mlib = {
-      # 与 lib.optionals 相反的函数：先接受模块列表，再接受条件
-      includeif = modules: condition: nixpkgs.lib.optionals condition modules;
-    };
+    mkNixos = import ./lib/mk-nixos.nix inputs;
   in {
     diskoConfigurations.disk-ext4 = import ./systems/disks/ext4.nix;
-    nixosConfigurations = let
-      defaultParams = {
-        gui = false;
-        username = "jaign";
-        hashpass = "$y$j9T$YL92Oi1f0ZSAE9Zcyj5M5/$Ktasy.qAJvFc8DZHKBLz9dq1kk0vA87opaJ8ckaObm.";
-        proxy = null;
-      };
-      mkNixos = params': let
-        params = defaultParams // params';
-      in
-        nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {inherit inputs params mlib;};
-          modules = [
-            inputs.nur.modules.nixos.default
-            ./systems/setup-config.nix
-            ./systems/setup-home.nix
-            ./systems/setup-tools.nix
-          ];
-        };
-    in {
+    nixosConfigurations = {
       fnosvm-nixos = mkNixos {
         machine = "fnosvm";
         hostname = "fnosvm-nixos";
@@ -72,17 +49,6 @@
         hostname = "wsl-nixos";
       };
     };
-    packages = let
-      systems = ["x86_64-linux" "aarch64-linux"];
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-      nixpkgsFor = forAllSystems (system:
-        import nixpkgs {
-          inherit system;
-          config = {
-            allowUnfree = true;
-          };
-        });
-    in
-      forAllSystems (system: import ./pkgs {pkgs = nixpkgsFor.${system};});
+    packages = import ./lib/mk-pkgs.nix inputs;
   };
 }
