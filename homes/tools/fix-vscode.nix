@@ -1,10 +1,5 @@
 # This is a fix for vscode-server to work with notWSL
-{
-  inputs,
-  lib,
-  params,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.vscode-server.homeModules.default
   ];

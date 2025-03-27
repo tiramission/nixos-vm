@@ -14,6 +14,6 @@ in
         inputs.nur.modules.nixos.default
         ../systems/setup-config.nix
         ../systems/setup-home.nix
-        ../systems/setup-tools.nix
+        ../systems/setup-mtool.nix
       ];
     }
