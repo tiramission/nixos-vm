@@ -4,10 +4,10 @@
   params,
   ...
 }: let
-  plugins = (import ./plugins.nix) {
-    pkgs = pkgs;
-    lib = lib;
-  };
+  plugins-nix4vscode = (import ./plugins.nix) {inherit pkgs lib;};
+  plugins-stable = pkgs.vscode-extensions;
+  plugins-unstable = pkgs.unstable.vscode-extensions;
+  plugins = plugins-nix4vscode;
 in {
   home.file.".vscode/argv.json".source = (pkgs.formats.json {}).generate "argv" {
     "locale" = "zh-cn";
@@ -32,8 +32,7 @@ in {
       "editor.fontFamily" = "'Sarasa Term SC Nerd', 'Source Code Pro', 'Noto Serif CJK SC'";
       "editor.fontSize" = 15;
     };
-    extensions = with pkgs.vscode-marketplace;
-    with plugins; [
+    extensions = with plugins; [
       ms-ceintl.vscode-language-pack-zh-hans
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons
