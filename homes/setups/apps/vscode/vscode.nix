@@ -3,7 +3,12 @@
   lib,
   params,
   ...
-}: {
+}: let
+  plugins = (import ./plugins.nix) {
+    pkgs = pkgs;
+    lib = lib;
+  };
+in {
   home.file.".vscode/argv.json".source = (pkgs.formats.json {}).generate "argv" {
     "locale" = "zh-cn";
     "enable-crash-reporter" = true;
@@ -14,6 +19,8 @@
     enable = true;
     package = pkgs.unstable.vscode;
     mutableExtensionsDir = false;
+    enableExtensionUpdateCheck = false;
+    enableUpdateCheck = false;
     userSettings = {
       "window.dialogStyle" = "custom";
       "window.titleBarStyle" = "custom";
@@ -25,11 +32,13 @@
       "editor.fontFamily" = "'Sarasa Term SC Nerd', 'Source Code Pro', 'Noto Serif CJK SC'";
       "editor.fontSize" = 15;
     };
-    extensions = with pkgs.vscode-extensions; [
+    extensions = with pkgs.vscode-marketplace;
+    with plugins; [
       ms-ceintl.vscode-language-pack-zh-hans
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons
       bbenoist.nix
+      golang.go
     ];
   };
 }

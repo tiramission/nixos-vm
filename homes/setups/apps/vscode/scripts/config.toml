@@ -1,0 +1,22 @@
+vscode_version = "1.98.2"
+
+[[extensions]]
+publisher_name = "bbenoist"
+extension_name = "nix"
+
+[[extensions]]
+publisher_name = "catppuccin"
+extension_name = "catppuccin-vsc"
+
+[[extensions]]
+publisher_name = "catppuccin"
+extension_name = "catppuccin-vsc-icons"
+
+[[extensions]]
+publisher_name = "golang"
+extension_name = "go"
+
+[[extensions]]
+publisher_name = "ms-ceintl"
+extension_name = "vscode-language-pack-zh-hans"
+
