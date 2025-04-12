@@ -9,5 +9,11 @@
 
     nur.repos.mic92.hello-nur
     unstable.bat
+    unstable.uv
+  ];
+
+  home.sessionPath = [
+    "$HOME/.local/bin"
+    "$HOME/go/bin"
   ];
 }
