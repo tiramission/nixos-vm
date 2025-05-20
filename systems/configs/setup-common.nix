@@ -9,13 +9,20 @@
   params,
   ...
 }: let
-  binary-mirror = "https://mirrors.ustc.edu.cn/nix-channels/store";
+  binary-mirrors = [
+    "http://192.168.30.10:8080/default"
+    "https://mirrors.ustc.edu.cn/nix-channels/store"
+    "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+  ];
 in {
   networking.hostName = params.hostname;
   networking.proxy.default = params.proxy;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.substituters = [binary-mirror];
+  nix.settings.substituters = binary-mirrors;
+  nix.settings.trusted-public-keys = [
+    "default:9wMBoTJQmVcz+2YMmyx611BWkJj6KlHZsW8Wv4RXIhg="
+  ];
   environment.systemPackages = with pkgs; [
     git
     neovim
@@ -27,6 +34,6 @@ in {
 
   i18n.defaultLocale = "zh_CN.UTF-8";
 
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
   nixpkgs.config.allowUnfree = true;
 }

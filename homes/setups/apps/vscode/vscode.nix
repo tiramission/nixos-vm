@@ -3,12 +3,7 @@
   lib,
   params,
   ...
-}: let
-  plugins-nix4vscode = (import ./plugins.nix) {inherit pkgs lib;};
-  plugins-stable = pkgs.vscode-extensions;
-  plugins-unstable = pkgs.unstable.vscode-extensions;
-  plugins = plugins-nix4vscode;
-in {
+}: {
   home.file.".vscode/argv.json".source = (pkgs.formats.json {}).generate "argv" {
     "locale" = "zh-cn";
     "enable-crash-reporter" = true;
@@ -19,25 +14,28 @@ in {
     enable = true;
     package = pkgs.unstable.vscode;
     mutableExtensionsDir = false;
-    enableExtensionUpdateCheck = false;
-    enableUpdateCheck = false;
-    userSettings = {
-      "window.dialogStyle" = "custom";
-      "window.titleBarStyle" = "custom";
-      "window.restoreWindows" = "none";
-      "workbench.colorTheme" = "Catppuccin Latte";
-      "workbench.iconTheme" = "catppuccin-mocha";
-      "workbench.preferredDarkColorTheme" = "Catppuccin Mocha";
-      "workbench.preferredLightColorTheme" = "Catppuccin Latte";
-      "editor.fontFamily" = "'Sarasa Term SC Nerd', 'Source Code Pro', 'Noto Serif CJK SC'";
-      "editor.fontSize" = 15;
+
+    profiles.default = {
+      enableExtensionUpdateCheck = false;
+      enableUpdateCheck = false;
+      userSettings = {
+        "window.dialogStyle" = "custom";
+        "window.titleBarStyle" = "custom";
+        "window.restoreWindows" = "none";
+        "workbench.colorTheme" = "Catppuccin Latte";
+        "workbench.iconTheme" = "catppuccin-mocha";
+        "workbench.preferredDarkColorTheme" = "Catppuccin Mocha";
+        "workbench.preferredLightColorTheme" = "Catppuccin Latte";
+        "editor.fontFamily" = "'Sarasa Term SC Nerd', 'Source Code Pro', 'Noto Serif CJK SC'";
+        "editor.fontSize" = 15;
+      };
+      extensions = pkgs.nix4vscode.forVscode [
+        "ms-ceintl.vscode-language-pack-zh-hans"
+        "catppuccin.catppuccin-vsc"
+        "catppuccin.catppuccin-vsc-icons"
+        "bbenoist.nix"
+        "golang.go"
+      ];
     };
-    extensions = with plugins; [
-      ms-ceintl.vscode-language-pack-zh-hans
-      catppuccin.catppuccin-vsc
-      catppuccin.catppuccin-vsc-icons
-      bbenoist.nix
-      golang.go
-    ];
   };
 }

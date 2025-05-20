@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
   version = "2.3.1";
 
   src = fetchurl {
-    url = "https://github.com/laishulu/Sarasa-Term-SC-Nerd/releases/download/v${version}/SarasaTermSCNerd.ttf.7z";
+    url = "https://ghproxy.net/https://github.com/laishulu/Sarasa-Term-SC-Nerd/releases/download/v${version}/SarasaTermSCNerd.ttf.7z";
     sha256 = "sha256-REg7dJ7YJhEcFQ43+SIJkncJu1PsUCESlwHMfZftoKk=";
   };
 

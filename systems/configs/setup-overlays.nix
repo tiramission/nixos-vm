@@ -15,5 +15,6 @@
     (final: prev: {
       custom = inputs.self.packages.${prev.system};
     })
+    (inputs.nix4vscode.overlays.forVscode)
   ];
 }
