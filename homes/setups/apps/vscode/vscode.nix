@@ -22,11 +22,11 @@
         "window.dialogStyle" = "custom";
         "window.titleBarStyle" = "custom";
         "window.restoreWindows" = "none";
-        "workbench.colorTheme" = "Catppuccin Latte";
-        "workbench.iconTheme" = "catppuccin-mocha";
+        "workbench.colorTheme" = "SynthWave '84";
+        "workbench.iconTheme" = "helium-icon-theme";
         "workbench.preferredDarkColorTheme" = "Catppuccin Mocha";
         "workbench.preferredLightColorTheme" = "Catppuccin Latte";
-        "editor.fontFamily" = "'Sarasa Term SC Nerd', 'Source Code Pro', 'Noto Serif CJK SC'";
+        "editor.fontFamily" = "'Maple Mono NF CN', 'Sarasa Term SC Nerd', 'Source Code Pro', 'Noto Serif CJK SC'";
         "editor.fontSize" = 15;
       };
       extensions = pkgs.nix4vscode.forVscode [
@@ -35,6 +35,8 @@
         "catppuccin.catppuccin-vsc-icons"
         "bbenoist.nix"
         "golang.go"
+        "helgardrichard.helium-icon-theme"
+        "robbowen.synthwave-vscode"
       ];
     };
   };

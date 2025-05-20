@@ -24,6 +24,7 @@
       # nerd-fonts.symbols-only
       # nerdfonts
       custom.sarasa-term-sc-nerd
+      maple-mono.NF-CN-unhinted
     ];
 
     fontconfig = {
