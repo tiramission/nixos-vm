@@ -47,7 +47,7 @@
       fnosvm-nixos = mkNixos {
         machine = "fnosvm";
         hostname = "fnosvm-nixos";
-        proxy = "http://192.168.30.29:7890";
+        proxy = "http://192.168.30.150:7890";
       };
       hyperv-nixos = mkNixos {
         gui = true;
