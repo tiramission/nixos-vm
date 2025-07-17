@@ -2,7 +2,7 @@
 
 1. 克隆仓库
 ```bash
-sudo nix --extra-experimental-features 'nix-command flakes' run nixpkgs#git -- clone https://github.com/tiramission/nixos-config -b all-flake
+sudo nix --extra-experimental-features 'nix-command flakes' run nixpkgs#git -- clone https://github.com/tiramission/nixos-config
 cd nixos-config
 ```
 2. 分区磁盘
