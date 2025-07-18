@@ -23,6 +23,8 @@ in {
   nix.settings.trusted-public-keys = [
     "default:9wMBoTJQmVcz+2YMmyx611BWkJj6KlHZsW8Wv4RXIhg="
   ];
+  nix.settings.use-xdg-base-directories = true;
+
   environment.systemPackages = with pkgs; [
     git
     neovim
