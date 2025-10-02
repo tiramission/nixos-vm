@@ -6,10 +6,12 @@
     # bat
     tree
     ripgrep
+    just
 
     nur.repos.mic92.hello-nur
     unstable.bat
     unstable.uv
+    unstable.nh
   ];
 
   home.sessionPath = [
