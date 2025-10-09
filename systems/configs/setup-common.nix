@@ -25,6 +25,8 @@ in {
   ];
   nix.settings.use-xdg-base-directories = true;
 
+  nix.package = pkgs.unstable.nixVersions.latest;
+
   environment.systemPackages = with pkgs; [
     git
     neovim
