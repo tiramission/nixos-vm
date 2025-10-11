@@ -1,4 +1,5 @@
 {
+  osConfig,
   lib,
   mlib,
   inputs,
@@ -12,5 +13,6 @@
     (mlib.includeif [./tools/fix-vscode.nix] (!params.wsl))
   ];
 
-  home.stateVersion = "25.05";
+  # home.stateVersion = "25.05";
+  home.stateVersion = osConfig.system.stateVersion;
 }
