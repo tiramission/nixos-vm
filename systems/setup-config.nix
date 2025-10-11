@@ -14,5 +14,6 @@
     (mlib.includeif [./configs/setup-hardware.nix] true)
     (mlib.includeif [./configs/setup-overlays.nix] true)
     (mlib.includeif [./configs/setup-docker.nix] params.docker)
+    (mlib.includeif [./configs/setup-incus.nix] params.incus)
   ];
 }

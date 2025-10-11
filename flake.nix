@@ -40,6 +40,7 @@
       hashpass = "$y$j9T$YL92Oi1f0ZSAE9Zcyj5M5/$Ktasy.qAJvFc8DZHKBLz9dq1kk0vA87opaJ8ckaObm.";
       proxy = null;
       docker = true;
+      incus = false;
     }; # 参数
   in {
     diskoConfigurations.disk-ext4 = import ./systems/disks/ext4.nix;
@@ -58,6 +59,7 @@
         machine = "wsl";
         wsl = true;
         hostname = "wsl-nixos";
+        incus = true;
       };
     };
     packages = import ./lib/mk-pkgs.nix inputs;

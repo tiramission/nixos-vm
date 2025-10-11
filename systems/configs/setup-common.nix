@@ -17,6 +17,8 @@
 in {
   networking.hostName = params.hostname;
   networking.proxy.default = params.proxy;
+  networking.nftables.enable = true;
+  networking.firewall.checkReversePath = false;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.substituters = binary-mirrors;
