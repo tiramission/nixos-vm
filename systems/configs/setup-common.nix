@@ -10,7 +10,6 @@
   ...
 }: let
   binary-mirrors = [
-    "http://192.168.30.10:8080/default"
     "https://mirrors.ustc.edu.cn/nix-channels/store"
     "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
   ];
@@ -22,9 +21,6 @@ in {
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.substituters = binary-mirrors;
-  nix.settings.trusted-public-keys = [
-    "default:9wMBoTJQmVcz+2YMmyx611BWkJj6KlHZsW8Wv4RXIhg="
-  ];
   nix.settings.use-xdg-base-directories = true;
 
   nix.package = pkgs.unstable.nixVersions.latest;
