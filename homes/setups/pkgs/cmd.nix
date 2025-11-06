@@ -12,6 +12,7 @@
     unstable.bat
     unstable.uv
     unstable.nh
+    unstable.claude-code
   ];
 
   home.sessionPath = [
