@@ -11,5 +11,6 @@
     (mlib.includeif [./apps/nix-index.nix] true)
     (mlib.includeif [./apps/fish.nix] true)
     (mlib.includeif [./apps/zsh.nix] true)
+    (mlib.includeif [./apps/go.nix] true)
   ];
 }
