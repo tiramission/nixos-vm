@@ -14,7 +14,7 @@
   config = lib.mkIf config.mtool.fix-vscode-ld.enable {
     programs.nix-ld = {
       enable = true;
-      package = pkgs.nix-ld-rs;
+      package = pkgs.nix-ld;
     };
   };
 }
