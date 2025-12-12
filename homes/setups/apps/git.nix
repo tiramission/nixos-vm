@@ -1,9 +1,9 @@
 {pkgs, ...}: {
   programs.git = {
     enable = true;
-    userName = "tiramission";
-    userEmail = "37465086+tiramission@users.noreply.github.com";
-    extraConfig = {
+    settings = {
+      user.name = "tiramission";
+      user.email = "37465086+tiramission@users.noreply.github.com";
       safe.directory = "*";
       core.quotepath = false;
       init.defaultBranch = "main";
