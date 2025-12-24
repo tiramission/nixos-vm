@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   src = pkgs.fetchFromGitHub {
     owner = "JannoTjarks";
     repo = "catppuccin-zsh";
@@ -11,6 +15,7 @@ in {
     autocd = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    dotDir = "${config.xdg.configHome}/zsh";
     oh-my-zsh = {
       enable = true;
       custom = "${src}";
