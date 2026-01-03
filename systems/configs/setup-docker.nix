@@ -1,5 +1,12 @@
-{params, ...}: {
-  virtualisation.docker.enable = true;
+{
+  params,
+  pkgs,
+  ...
+}: {
+  virtualisation.docker = {
+    enable = true;
+    package = pkgs.unstable.docker;
+  };
   users.users.${params.username}.extraGroups = ["docker"];
 
   services.dockerRegistry = {

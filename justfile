@@ -8,7 +8,7 @@ commit MSG: add
         git commit -m "{{MSG}}"
 
 repl M="wsl-nixos": add
-        nix repl .#nixosConfigurations.{{M}}
+        nix repl ".#nixosConfigurations.{{M}}"
 
 rf: add
         nix repl --expr 'builtins.getFlake (toString ./.)'
@@ -21,3 +21,6 @@ switch: add
 
 apply: add
         nh os switch .
+
+wsl:
+	sudo nix run ".#nixosConfigurations.wsl-nixos.config.system.build.tarballBuilder"
